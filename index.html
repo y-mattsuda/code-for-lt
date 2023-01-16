@@ -402,7 +402,7 @@
     </div>
 </div>
 
-  <p class="date">2023/01/10</p>
+  <p class="date">2023/01/16</p>
 </section>
 <section id="自己紹介" class="slide level2 smaller">
 <h2>自己紹介</h2>
@@ -518,8 +518,25 @@
 <pre><code>I will walk!</code></pre>
 </div>
 </div>
+</section>
+<section id="typing関連豆知識n連発-2" class="slide level2 smaller">
+<h2>typing関連豆知識n連発</h2>
+<h3 id="protocol-3.8-1"><code>Protocol</code> (3.8&lt;=)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">from</span> typing <span class="im">import</span> Protocol</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw">class</span> IPerson(Protocol):</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="kw">def</span> walk(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb9-4"><a href="#cb9-4"></a>        <span class="cf">pass</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="kw">class</span> ImplPerson:</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="kw">def</span> walk(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb9-7"><a href="#cb9-7"></a>        <span class="bu">print</span>(<span class="ss">f"I will walk!"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="kw">class</span> NoImplPerson:...</span>
+<span id="cb9-9"><a href="#cb9-9"></a></span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="kw">def</span> call_walkable(person: IPerson):</span>
+<span id="cb9-11"><a href="#cb9-11"></a>    person.walk()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>call_walkable(NoImplPerson())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>call_walkable(NoImplPerson())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>AttributeError: 'NoImplPerson' object has no attribute 'walk'</code></pre>
 </div>
@@ -531,24 +548,24 @@
 </ul></li>
 </ul>
 </section>
-<section id="typing関連豆知識n連発-2" class="slide level2 smaller">
+<section id="typing関連豆知識n連発-3" class="slide level2 smaller">
 <h2>typing関連豆知識n連発</h2>
 <h3 id="literal-3.8"><code>Literal</code> (3.8&lt;=)</h3>
 <ul>
 <li>TypeScriptでの<code>type fooOrBar: "foo" | "bar"</code>のようなことができる</li>
 </ul>
 <div class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">from</span> typing <span class="im">import</span> Literal</span>
-<span id="cb11-2"><a href="#cb11-2"></a>Subject <span class="op">=</span> Literal[<span class="st">"math"</span>, <span class="st">"english"</span>, <span class="st">"japanese"</span>]</span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="kw">def</span> get_score(subject: Subject) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb11-4"><a href="#cb11-4"></a>    <span class="co"># Subject型以外の文字列だとバグるかもしれない関数</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a>    <span class="cf">if</span> subject <span class="op">==</span> <span class="st">"physics"</span>: <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"エラーだよ"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">from</span> typing <span class="im">import</span> Literal</span>
+<span id="cb12-2"><a href="#cb12-2"></a>Subject <span class="op">=</span> Literal[<span class="st">"math"</span>, <span class="st">"english"</span>, <span class="st">"japanese"</span>]</span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="kw">def</span> get_score(subject: Subject) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    <span class="co"># Subject型以外の文字列だとバグるかもしれない関数</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>    <span class="cf">if</span> subject <span class="op">==</span> <span class="st">"physics"</span>: <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"エラーだよ"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>get_score(<span class="st">"math"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>get_score(<span class="st">"math"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>get_score(<span class="st">"physics"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>get_score(<span class="st">"physics"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>ValueError: エラーだよ</code></pre>
 </div>
@@ -560,7 +577,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="typing関連豆知識n連発-3" class="slide level2 smaller">
+<section id="typing関連豆知識n連発-4" class="slide level2 smaller">
 <h2>typing関連豆知識n連発</h2>
 <h3 id="typeddict-3.8"><code>TypedDict</code> (3.8&lt;=)</h3>
 <ul>
@@ -570,19 +587,38 @@
 </ul></li>
 </ul>
 <div class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># これでは各キーがintとstr両方を取れてしまう</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>UserDic <span class="op">=</span> <span class="bu">dict</span>[<span class="bu">str</span>, <span class="bu">int</span> <span class="op">|</span> <span class="bu">str</span>]</span>
-<span id="cb15-3"><a href="#cb15-3"></a>user: UserDic <span class="op">=</span> {<span class="st">"uid"</span>: <span class="dv">1</span>, <span class="st">"name"</span>: <span class="st">"john"</span>}</span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="co"># これを型エラーにできない</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a>user2: UserDic <span class="op">=</span> {<span class="st">"uid"</span>: <span class="st">"1"</span>, <span class="st">"name"</span>: <span class="dv">123</span>}</span>
-<span id="cb15-6"><a href="#cb15-6"></a></span>
-<span id="cb15-7"><a href="#cb15-7"></a><span class="im">from</span> typing <span class="im">import</span> TypedDict</span>
-<span id="cb15-8"><a href="#cb15-8"></a><span class="kw">class</span> User(TypedDict):</span>
-<span id="cb15-9"><a href="#cb15-9"></a>    uid: <span class="bu">int</span></span>
-<span id="cb15-10"><a href="#cb15-10"></a>    name: <span class="bu">str</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a>user3: User <span class="op">=</span> {<span class="st">"uid"</span>: <span class="dv">1</span>, <span class="st">"name"</span>: <span class="st">"john"</span>}</span>
-<span id="cb15-12"><a href="#cb15-12"></a><span class="co"># 型エラー</span></span>
-<span id="cb15-13"><a href="#cb15-13"></a>user4: User <span class="op">=</span> {<span class="st">"uid"</span>: <span class="st">"1"</span>, <span class="st">"name"</span>: <span class="dv">123</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># これでは各キーがintとstr両方を取れてしまう</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>UserDic <span class="op">=</span> <span class="bu">dict</span>[<span class="bu">str</span>, <span class="bu">int</span> <span class="op">|</span> <span class="bu">str</span>]</span>
+<span id="cb16-3"><a href="#cb16-3"></a>user: UserDic <span class="op">=</span> {<span class="st">"uid"</span>: <span class="dv">1</span>, <span class="st">"name"</span>: <span class="st">"john"</span>}</span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="co"># これを型エラーにできない</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>user2: UserDic <span class="op">=</span> {<span class="st">"uid"</span>: <span class="st">"1"</span>, <span class="st">"name"</span>: <span class="dv">123</span>}</span>
+<span id="cb16-6"><a href="#cb16-6"></a></span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="im">from</span> typing <span class="im">import</span> TypedDict</span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="kw">class</span> User(TypedDict):</span>
+<span id="cb16-9"><a href="#cb16-9"></a>    uid: <span class="bu">int</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a>    name: <span class="bu">str</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a>user3: User <span class="op">=</span> {<span class="st">"uid"</span>: <span class="dv">1</span>, <span class="st">"name"</span>: <span class="st">"john"</span>}</span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="co"># 型エラー</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a>user4: User <span class="op">=</span> {<span class="st">"uid"</span>: <span class="st">"1"</span>, <span class="st">"name"</span>: <span class="dv">123</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="typing関連豆知識n連発-5" class="slide level2 smaller">
+<h2>typing関連豆知識n連発</h2>
+<h3 id="typeddict-3.8-1"><code>TypedDict</code> (3.8&lt;=)</h3>
+<ul>
+<li>(特に)辞書のvalueに複数種類の型を許したいときに、厳密に型チェックを行える
+<ul>
+<li>そもそもそのようなユースケースでは<code>dataclasses.dataclass</code>を使うべきと思いますが…</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="im">from</span> typing <span class="im">import</span> TypedDict</span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="kw">class</span> User(TypedDict):</span>
+<span id="cb17-3"><a href="#cb17-3"></a>    uid: <span class="bu">int</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>    name: <span class="bu">str</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>user3: User <span class="op">=</span> {<span class="st">"uid"</span>: <span class="dv">1</span>, <span class="st">"name"</span>: <span class="st">"john"</span>}</span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="co"># 型エラー</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>user4: User <span class="op">=</span> {<span class="st">"uid"</span>: <span class="st">"1"</span>, <span class="st">"name"</span>: <span class="dv">123</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>mypyでエラーとして検出できる
@@ -592,7 +628,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="typing関連豆知識n連発-4" class="slide level2 smaller">
+<section id="typing関連豆知識n連発-6" class="slide level2 smaller">
 <h2>typing関連豆知識n連発</h2>
 <h3 id="typeguard-3.10"><code>TypeGuard</code> (3.10&lt;=)</h3>
 <ul>
@@ -600,27 +636,27 @@
 <li>実装が間違っていても型チェッカは信じてしまうので諸刃の剣</li>
 </ul>
 <div class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">from</span> typing <span class="im">import</span> TypeGuard</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="kw">def</span> is_strs(vals: <span class="bu">list</span>[<span class="bu">str</span>] <span class="op">|</span> <span class="bu">list</span>[<span class="bu">int</span>]) <span class="op">-&gt;</span> TypeGuard[<span class="bu">list</span>[<span class="bu">str</span>]]:</span>
-<span id="cb16-3"><a href="#cb16-3"></a>    <span class="cf">return</span> <span class="bu">all</span>(<span class="bu">isinstance</span>(v, <span class="bu">str</span>) <span class="cf">for</span> v <span class="kw">in</span> vals)</span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="kw">def</span> is_ints(vals: <span class="bu">list</span>[<span class="bu">str</span>] <span class="op">|</span> <span class="bu">list</span>[<span class="bu">int</span>]) <span class="op">-&gt;</span> TypeGuard[<span class="bu">list</span>[<span class="bu">int</span>]]:</span>
-<span id="cb16-5"><a href="#cb16-5"></a>    <span class="cf">return</span> <span class="bu">all</span>(<span class="bu">isinstance</span>(v, <span class="bu">int</span>) <span class="cf">for</span> v <span class="kw">in</span> vals)</span>
-<span id="cb16-6"><a href="#cb16-6"></a></span>
-<span id="cb16-7"><a href="#cb16-7"></a><span class="kw">def</span> foo(vals: <span class="bu">list</span>[<span class="bu">str</span>] <span class="op">|</span> <span class="bu">list</span>[<span class="bu">int</span>]):</span>
-<span id="cb16-8"><a href="#cb16-8"></a>    <span class="cf">if</span> <span class="bu">all</span>(<span class="bu">isinstance</span>(v, <span class="bu">str</span>) <span class="cf">for</span> v <span class="kw">in</span> vals):</span>
-<span id="cb16-9"><a href="#cb16-9"></a>        <span class="co"># ここで型エラーが出てしまう</span></span>
-<span id="cb16-10"><a href="#cb16-10"></a>        <span class="co"># vはstr | int型と認識される</span></span>
-<span id="cb16-11"><a href="#cb16-11"></a>        <span class="cf">return</span> [v.upper() <span class="cf">for</span> v <span class="kw">in</span> vals]</span>
-<span id="cb16-12"><a href="#cb16-12"></a></span>
-<span id="cb16-13"><a href="#cb16-13"></a><span class="kw">def</span> bar(vals: <span class="bu">list</span>[<span class="bu">str</span>] <span class="op">|</span> <span class="bu">list</span>[<span class="bu">int</span>]) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">str</span>]:</span>
-<span id="cb16-14"><a href="#cb16-14"></a>    <span class="cf">match</span> vals:</span>
-<span id="cb16-15"><a href="#cb16-15"></a>        <span class="cf">case</span> vals <span class="cf">if</span> is_strs(vals):</span>
-<span id="cb16-16"><a href="#cb16-16"></a>            <span class="co"># vはstr型だと認識される</span></span>
-<span id="cb16-17"><a href="#cb16-17"></a>            <span class="cf">return</span> [v.upper() <span class="cf">for</span> v <span class="kw">in</span> vals]</span>
-<span id="cb16-18"><a href="#cb16-18"></a>        <span class="cf">case</span> vals <span class="cf">if</span> is_ints(vals):</span>
-<span id="cb16-19"><a href="#cb16-19"></a>            <span class="cf">return</span> [<span class="ss">f"</span><span class="sc">{</span>v <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> v <span class="kw">in</span> vals]</span>
-<span id="cb16-20"><a href="#cb16-20"></a>        <span class="cf">case</span> _:</span>
-<span id="cb16-21"><a href="#cb16-21"></a>            <span class="cf">raise</span> <span class="pp">TypeError</span>(<span class="st">"invalid type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="im">from</span> typing <span class="im">import</span> TypeGuard</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="kw">def</span> is_strs(vals: <span class="bu">list</span>[<span class="bu">str</span>] <span class="op">|</span> <span class="bu">list</span>[<span class="bu">int</span>]) <span class="op">-&gt;</span> TypeGuard[<span class="bu">list</span>[<span class="bu">str</span>]]:</span>
+<span id="cb18-3"><a href="#cb18-3"></a>    <span class="cf">return</span> <span class="bu">all</span>(<span class="bu">isinstance</span>(v, <span class="bu">str</span>) <span class="cf">for</span> v <span class="kw">in</span> vals)</span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="kw">def</span> is_ints(vals: <span class="bu">list</span>[<span class="bu">str</span>] <span class="op">|</span> <span class="bu">list</span>[<span class="bu">int</span>]) <span class="op">-&gt;</span> TypeGuard[<span class="bu">list</span>[<span class="bu">int</span>]]:</span>
+<span id="cb18-5"><a href="#cb18-5"></a>    <span class="cf">return</span> <span class="bu">all</span>(<span class="bu">isinstance</span>(v, <span class="bu">int</span>) <span class="cf">for</span> v <span class="kw">in</span> vals)</span>
+<span id="cb18-6"><a href="#cb18-6"></a></span>
+<span id="cb18-7"><a href="#cb18-7"></a><span class="kw">def</span> foo(vals: <span class="bu">list</span>[<span class="bu">str</span>] <span class="op">|</span> <span class="bu">list</span>[<span class="bu">int</span>]):</span>
+<span id="cb18-8"><a href="#cb18-8"></a>    <span class="cf">if</span> <span class="bu">all</span>(<span class="bu">isinstance</span>(v, <span class="bu">str</span>) <span class="cf">for</span> v <span class="kw">in</span> vals):</span>
+<span id="cb18-9"><a href="#cb18-9"></a>        <span class="co"># ここで型エラーが出てしまう</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a>        <span class="co"># vはstr | int型と認識される</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a>        <span class="cf">return</span> [v.upper() <span class="cf">for</span> v <span class="kw">in</span> vals]</span>
+<span id="cb18-12"><a href="#cb18-12"></a></span>
+<span id="cb18-13"><a href="#cb18-13"></a><span class="kw">def</span> bar(vals: <span class="bu">list</span>[<span class="bu">str</span>] <span class="op">|</span> <span class="bu">list</span>[<span class="bu">int</span>]) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">str</span>]:</span>
+<span id="cb18-14"><a href="#cb18-14"></a>    <span class="cf">match</span> vals:</span>
+<span id="cb18-15"><a href="#cb18-15"></a>        <span class="cf">case</span> vals <span class="cf">if</span> is_strs(vals):</span>
+<span id="cb18-16"><a href="#cb18-16"></a>            <span class="co"># vはstr型だと認識される</span></span>
+<span id="cb18-17"><a href="#cb18-17"></a>            <span class="cf">return</span> [v.upper() <span class="cf">for</span> v <span class="kw">in</span> vals]</span>
+<span id="cb18-18"><a href="#cb18-18"></a>        <span class="cf">case</span> vals <span class="cf">if</span> is_ints(vals):</span>
+<span id="cb18-19"><a href="#cb18-19"></a>            <span class="cf">return</span> [<span class="ss">f"</span><span class="sc">{</span>v <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> v <span class="kw">in</span> vals]</span>
+<span id="cb18-20"><a href="#cb18-20"></a>        <span class="cf">case</span> _:</span>
+<span id="cb18-21"><a href="#cb18-21"></a>            <span class="cf">raise</span> <span class="pp">TypeError</span>(<span class="st">"invalid type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="footer footer-default">
 
